@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_theme.dart';
@@ -790,6 +791,58 @@ class _OnboardingViewState extends ConsumerState<_OnboardingView> {
                       ),
                     ),
                   ),
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        onPressed: () async {
+                          final profile = await ref
+                              .read(activeProfileProvider.notifier)
+                              .createProfile('Guest', ProfileType.child, _emoji);
+                          await ref.read(activeProfileProvider.notifier).switchProfile(profile);
+                          ref.read(boardCardsProvider.notifier).refresh();
+                        },
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          side: const BorderSide(color: AppColors.border),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        ),
+                        icon: const Icon(Icons.fast_forward_rounded, color: AppColors.textSecondary, size: 20),
+                        label: const Text(
+                          'Skip',
+                          style: TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        onPressed: () {
+                          SystemNavigator.pop();
+                        },
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          side: const BorderSide(color: Colors.redAccent, width: 1.5),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                        ),
+                        icon: const Icon(Icons.exit_to_app_rounded, color: Colors.redAccent, size: 20),
+                        label: const Text(
+                          'Exit App',
+                          style: TextStyle(
+                            color: Colors.redAccent,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

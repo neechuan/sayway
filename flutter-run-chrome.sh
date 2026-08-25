@@ -1,0 +1,2 @@
+#flutter run -d 316DAB85-9149-49B6-AB5B-E4EFD0E1EE87 
+flutter run -d chrome
