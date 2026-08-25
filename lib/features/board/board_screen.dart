@@ -556,6 +556,18 @@ class _ProfileSheet extends ConsumerWidget {
                 _showCreateProfile(context, ref);
               },
             ),
+            const Divider(color: AppColors.border),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              value: ref.watch(useCommunicationSymbolsProvider),
+              onChanged: (val) {
+                ref.read(useCommunicationSymbolsProvider.notifier).state = val;
+              },
+              title: const Text('Use Communication Symbols',
+                  style: TextStyle(color: AppColors.textSecondary, fontWeight: FontWeight.w600, fontSize: 15)),
+              subtitle: const Text('Use emojis instead of ARASAAC pictograms',
+                  style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
+            ),
           ],
         ),
       ),

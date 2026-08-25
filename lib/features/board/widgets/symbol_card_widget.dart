@@ -142,6 +142,8 @@ class _SymbolCardWidgetState extends ConsumerState<SymbolCardWidget>
   }
 
   Widget _buildSymbol(Color bgColor) {
+    final useCommunicationSymbols = ref.watch(useCommunicationSymbolsProvider);
+
     if (widget.card.customImagePath != null) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(8),
@@ -153,7 +155,7 @@ class _SymbolCardWidgetState extends ConsumerState<SymbolCardWidget>
           errorBuilder: (_, __, ___) => _emojiWidget(bgColor),
         ),
       );
-    } else if (widget.card.symbolPath != null) {
+    } else if (widget.card.symbolPath != null && !useCommunicationSymbols) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Image.asset(

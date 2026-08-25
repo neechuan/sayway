@@ -80,15 +80,17 @@ class SentenceBar extends ConsumerWidget {
   }
 }
 
-class _WordChip extends StatelessWidget {
+class _WordChip extends ConsumerWidget {
   final SymbolCard card;
   final int index;
 
   const _WordChip({required this.card, required this.index});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final bgColor = Color(card.backgroundColor);
+    final useCommunicationSymbols = ref.watch(useCommunicationSymbolsProvider);
+
     return AnimatedScale(
       scale: 1.0,
       duration: const Duration(milliseconds: 200),
@@ -102,7 +104,7 @@ class _WordChip extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (card.symbolPath != null) ...[
+            if (card.symbolPath != null && !useCommunicationSymbols) ...[
               Image.asset(card.symbolPath!, width: 20, height: 20, fit: BoxFit.contain),
               const SizedBox(width: 6),
             ] else if (card.emoji != null) ...[

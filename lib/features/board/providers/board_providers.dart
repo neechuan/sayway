@@ -106,3 +106,7 @@ final filteredCardsProvider = Provider<List<SymbolCard>>((ref) {
   if (filter == null) return cards;
   return cards.where((c) => c.category == filter).toList();
 });
+
+// ── Settings ───────────────────────────────────────────────────────────────
+
+final useCommunicationSymbolsProvider = StateProvider<bool>((ref) => false);
