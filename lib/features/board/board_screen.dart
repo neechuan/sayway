@@ -568,6 +568,19 @@ class _ProfileSheet extends ConsumerWidget {
               subtitle: const Text('Use emojis instead of ARASAAC pictograms',
                   style: TextStyle(color: AppColors.textMuted, fontSize: 12)),
             ),
+            const Divider(color: AppColors.border),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const CircleAvatar(
+                backgroundColor: AppColors.surfaceElevated,
+                child: Icon(Icons.exit_to_app_rounded, color: Colors.redAccent),
+              ),
+              title: const Text('Exit App',
+                  style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.w600)),
+              onTap: () {
+                SystemNavigator.pop();
+              },
+            ),
           ],
         ),
       ),
