@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../data/models/symbol_card.dart';
 import '../providers/board_providers.dart';
@@ -156,15 +157,29 @@ class _SymbolCardWidgetState extends ConsumerState<SymbolCardWidget>
         ),
       );
     } else if (widget.card.symbolPath != null && !useCommunicationSymbols) {
+      final isRemote = widget.card.symbolPath!.startsWith('http');
       return ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: Image.asset(
-          widget.card.symbolPath!,
-          width: 44,
-          height: 44,
-          fit: BoxFit.contain,
-          errorBuilder: (_, __, ___) => _emojiWidget(bgColor),
-        ),
+        child: isRemote
+            ? CachedNetworkImage(
+                imageUrl: widget.card.symbolPath!,
+                width: 44,
+                height: 44,
+                fit: BoxFit.contain,
+                placeholder: (_, __) => const SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                errorWidget: (_, __, ___) => _emojiWidget(bgColor),
+              )
+            : Image.asset(
+                widget.card.symbolPath!,
+                width: 44,
+                height: 44,
+                fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) => _emojiWidget(bgColor),
+              ),
       );
     }
     return _emojiWidget(bgColor);

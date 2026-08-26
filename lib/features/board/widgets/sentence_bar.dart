@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../core/theme/app_theme.dart';
 import '../providers/board_providers.dart';
 import '../../../data/models/symbol_card.dart';
@@ -105,7 +106,18 @@ class _WordChip extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (card.symbolPath != null && !useCommunicationSymbols) ...[
-              Image.asset(card.symbolPath!, width: 20, height: 20, fit: BoxFit.contain),
+              card.symbolPath!.startsWith('http')
+                  ? CachedNetworkImage(
+                      imageUrl: card.symbolPath!,
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                      placeholder: (_, __) => const SizedBox(width: 20, height: 20),
+                      errorWidget: (_, __, ___) => card.emoji != null
+                          ? Text(card.emoji!, style: const TextStyle(fontSize: 16))
+                          : const SizedBox(width: 20, height: 20),
+                    )
+                  : Image.asset(card.symbolPath!, width: 20, height: 20, fit: BoxFit.contain),
               const SizedBox(width: 6),
             ] else if (card.emoji != null) ...[
               Text(card.emoji!, style: const TextStyle(fontSize: 16)),
