@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = sayway
+PRODUCT_NAME = saymyway
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.sayway.sayway
+PRODUCT_BUNDLE_IDENTIFIER = com.saymyway.saymyway
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2026 com.sayway. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2026 com.saymyway. All rights reserved.

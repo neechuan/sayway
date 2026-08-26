@@ -20,18 +20,18 @@ void main() async {
 
   runApp(
     const ProviderScope(
-      child: SayWayApp(),
+      child: SayMyWayApp(),
     ),
   );
 }
 
-class SayWayApp extends StatelessWidget {
-  const SayWayApp({super.key});
+class SayMyWayApp extends StatelessWidget {
+  const SayMyWayApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SayWay — AAC Communication',
+      title: 'SayMyWay — AAC Communication',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.dark,
       home: const BoardScreen(),

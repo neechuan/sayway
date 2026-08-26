@@ -133,7 +133,7 @@ class _TopBar extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Text(
-                'SayWay',
+                'SayMyWay',
                 style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 17,
@@ -717,7 +717,7 @@ class _OnboardingViewState extends ConsumerState<_OnboardingView> {
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  'Welcome to SayWay',
+                  'Welcome to SayMyWay',
                   style: TextStyle(
                     color: AppColors.textPrimary,
                     fontSize: 28,

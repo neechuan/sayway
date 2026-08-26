@@ -1,4 +1,4 @@
-package com.sayway.sayway
+package com.saymyway.saymyway
 
 import io.flutter.embedding.android.FlutterActivity
 
